@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="submission_message" name="Message">
+        <t t-call="website.layout">
+            <div id="wrap">
+                <div class="oe_structure">
+                    <div class="container">
+                        <h1>
+                            <span t-esc="header"/>
+                        </h1>
+                        <p t-esc="message"/>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="employee_reportsss" name="">
+        <t t-call="website.layout">
+            <div class="fullscreen-container">
+                <div class="sidebar">
+                    <ul class="menu">
+                        <center>
+                            <h4>Main Menu</h4>
+                        </center>
+                        <br/>
+                        <li class="menu-item" style="border-bottom: 1px solid #0089ff; padding: 8px">
+                            <a class="menu-link" href="/employee/details">Payslips</a>
+                        </li>
+                        <li class="menu-item" style="border-bottom: 1px solid #0089ff; padding: 8px">
+                            <a class="menu-link" href="/leaves/details">Leaves Request</a>
+                        </li>
+                        <li class="menu-item" style="border-bottom: 1px solid #0089ff; padding: 8px">
+                            <a class="menu-link" href="/travel/Leave/recss">Travel Request</a>
+                        </li>
+                        <li class="menu-item" style="border-bottom: 1px solid #0089ff; padding: 8px">
+                            <a class="menu-link" href="/loan/Leave/recss">Loans Request</a>
+                        </li>
+                        <li class="menu-item" style="border-bottom: 1px solid #0089ff; padding: 8px">
+                            <a class="menu-link" href="/generic/Leave/recss">General Request</a>
+                        </li>
+                        <li class="menu-item" style="border-bottom: 1px solid #0089ff; padding: 8px">
+                            <a class="menu-link" href="/helpdesk/tickets/recs">Tickets</a>
+                        </li>
+                        <li class="menu-item" style="border-bottom: 1px solid #0089ff; padding: 10px">
+                            <a class="menu-link" href="/purchase/request/recs">Purchase Request</a>
+                        </li>
+                        <li class="menu-item" style="border-bottom: 1px solid #0089ff; padding: 10px">
+                            <a class="menu-link" href="/purchase/consumption/recs">Consumption Request</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="content">
+                    <div class="card">
+                        <div class="card-header text-center">
+                            <h2 class="card-title" style="background-color: #f5f5f5;">Welcome to Employee Portal</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="employee-info">
+                                <div class="info-row">
+                                    <h2 class="card-title">Employee Information : </h2>
+                                    <br/>
+                                    <span class="info-label"><b>Name : </b></span>
+                                    <span class="info-value"><t t-esc="current_user.name"/></span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label"><b>Job Description : </b></span>
+                                    <span class="info-value"><t t-esc="current_user.employee_id.job_title"/></span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label"><b>Department : </b></span>
+                                    <span class="info-value"><t t-esc="current_user.employee_id.department_id.name"/></span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label"><b>Email : </b></span>
+                                    <span class="info-value"><t t-esc="current_user.employee_id.work_email"/></span>
+                                </div>
+                                <!-- Add more employee information rows as needed -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+        <style>
+            body {
+            margin: 0;
+            padding: 0;
+            background: #E6CCA6 url(/odoocms_employee_portal/static/img/building.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            opacity: 0.9;
+            }
+            .fullscreen-container {
+            display: flex;
+            height: 100vh;
+            }
+            .sidebar {
+            background-color: #343a40;
+            color: white;
+            width: 300px;
+            padding: 30px;
+            }
+            .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            }
+            .menu-item {
+            margin-bottom: 10px;
+            }
+            .menu-link {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 1.5;
+            }
+            .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            }
+            .page-title {
+            color: #343a40;
+            font-size: 48px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            }
+            .user-name {
+            color: #343a40;
+            font-size: 36px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-align: center;
+            }
+
+            /* Example styles for the card */
+            .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 50%;
+<!--            margin: auto;-->
+            background-color: #fff;
+            }
+            .card-header {
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #ccc;
+            }
+            .card-title {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+            }
+            .card-body {
+            padding: 20px;
+            }
+        </style>
+    </template>
+
+    <template id="employee_payslips_template" name="Employee Payslips">
+        <t t-call="website.layout">
+            <div class="oe_structure">
+                <div class="container">
+                    <br/>
+
+                    <div id="top_bar">
+                        <ul id="breadcrumbs">
+                            <li>
+                                <a href="/employee/dashboard">
+                                    <i class="material-icons">Home</i>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <center>
+                        <h3>Your Payslips</h3>
+                    </center>
+                    <br/>
+                    <table class="table-striped table" style="table-layout:100px;font-size:15px">
+                        <thead style="font-size: 15px; width:100%">
+                            <tr>
+                                <h6>
+                                    <th style="width:40%">Name</th>
+                                    <th style="width:40%">Period</th>
+                                    <th class="text-right" style="width:20%;">Print</th>
+                                </h6>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="payslip_id" t-as="pay">
+                                <tr>
+                                    <td style="vertical-align: middle;">
+                                        <span t-esc="pay.name"/>
+                                    </td>
+
+                                    <td style="vertical-align: middle;">
+                                        <span t-esc="pay.date_from"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <a t-att-href="'/report/pdf/catalogue_download?employee_id=%s' % pay.id">
+                                            <button type="button"
+                                                    class="btn btn-primary btn-lg mt8 js_check_product a-submit">
+                                                Print Report
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+        <style>body{ background: #e1e4f0; font-family: 'Open Sans', sans-serif; } .search { width: 100%; position:
+            relative; display: flex; }
+            .searchTerm { width: 100%; border: 2px solid #e1e4f0; border-right: none; padding: 5px; height: 36px;
+            border-radius: 5px 0 0 5px; outline: none; color: #112031; } .searchTerm:focus{ color: #e1e4f0; }
+            .searchButton { width: 40px; height: 36px; border: 1px solid #112031; background: #112031; text-align:
+            center; color: #fff; border-radius: 0 5px 5px 0; cursor: pointer; font-size: 20px; } /*Resize the wrap to
+            see the search bar change!*/ .wrap{ width: 30%; position: absolute; top: 30%; left: 50%; transform:
+            translate(-50%, -50%); } h1 { color: #e1e4f0; font-family: 'Droid serif', serif; font-size: 36px;
+            font-weight: 400; font-style: italic; line-height: 44px; margin: 10px 0 12px; text-align: center; border:
+            1px solid #1e3d75; padding: 20px; background-color: #1a3399; }
+        </style>
+    </template>
+
+    <template id="employee_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="o"/>
+                <div class="page" style="font-size:12px">
+                    <div class="oe_structure"/>
+                    <h5 style='text-align:center;'>
+                        Monthly Salary Payslip ‑ March 2022
+                    </h5>
+
+                    <table class="table table-sm table-striped table-bordered"
+                           style="table-layout:fixed;font-size:10px;">
+                        <thead>
+
+                            <div class="row" style="border:1px solid black">
+                                <tr>
+                                    <th style="color:blue;">Basic Salary</th>
+                                    <t t-foreach="docs" t-as="doc">
+                                        <th style="color:blue;">
+                                            <span t-esc="doc.name"/>
+                                        </th>
+
+                                    </t>
+                                </tr>
+
+                                <tr>
+                                    <th style="color:blue;">Branch</th>
+                                    <t t-foreach="docs" t-as="doc">
+                                        <th style="color:blue;">
+                                            <span t-esc="doc.employee_id"/>
+                                        </th>
+
+                                    </t>
+                                </tr>
+                            </div>
+
+
+                            <tr>
+                                <th style="color:blue;">Job Title</th>
+                                <t t-foreach="docs" t-as="doc">
+                                    <th style="color:blue;">
+                                        <span t-esc="doc.job_id"/>
+                                    </th>
+                                </t>
+                            </tr>
+
+                            <tr>
+                                <th style="color:blue;">Employee Bank</th>
+                                <t t-foreach="docs" t-as="doc">
+                                    <th style="color:blue;">
+                                        <span t-esc="doc.name"/>
+                                    </th>
+                                </t>
+                            </tr>
+
+                            <tr>
+                                <th style="color:blue;">Bank Account No</th>
+                                <t t-foreach="docs" t-as="doc">
+                                    <th style="color:blue;">
+                                        <span t-esc="doc.name"/>
+                                    </th>
+                                </t>
+                            </tr>
+
+                            <tr>
+                                <th style="color:blue;">Joining Date</th>
+                                <t t-foreach="docs" t-as="doc">
+                                    <th style="color:blue;">
+                                        <span t-esc="doc.name"/>
+                                    </th>
+                                </t>
+                            </tr>
+                        </thead>
+                    </table>
+
+
+                    <div class="uk-overflow-container uk-margin-top">
+                        <table class="uk-table uk-table-nowrap uk-table-align-vertical table_tree">
+                            <thead>
+                                <tr>
+                                    <th class="uk-width-1-10 md-color-grey-800">Basic Salary</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="docs" t-as="doc">
+                                    <tr class="table-parent-row show_child_row">
+                                        <td>Basic Salary</td>
+                                        <td>
+                                            <span t-esc="doc.name"/>
+                                            <t t-esc="doc.name"/>
+                                        </td>
+                                    </tr>
+                                    <t t-foreach="pays_id" t-as="pays">
+                                        <tr class="table-child-row ">
+                                            <td class="uk-margin-left-small">
+                                                <span t-esc="pays.name"/>
+                                                <t t-esc="pays.name"/>
+                                            </td>
+                                            <tr class="table-child-row  md-color-grey-800">
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <table class='table table-sm'>
+                        <thead style="font-size: 23px;">
+                            <tr>
+                                <h6>
+                                    <th>PAYMENT</th>
+                                </h6>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="rule_id" t-as="rule">
+                                <tr>
+                                    <td>
+                                        Basic Salary
+
+                                    </td>
+                                    <td>
+                                        <u>
+                                            <span t-esc="rule.amount_fix"/>
+                                        </u>
+                                    </td>
+                                    <td>
+                                        Housing Allowance
+
+                                    </td>
+                                    <td>
+                                        <span t-esc="rule.amount_fix"/>
+
+                                    </td>
+                                    <td>
+                                        Telephone Allowance
+                                    </td>
+                                    <td>
+                                        <span t-esc="rule.amount_fix"/>
+
+                                    </td>
+                                    <td>
+                                        Transportation Allowance
+
+                                    </td>
+                                    <td>
+                                        <u>
+                                            <span t-esc="rule.amount_fix"/>
+                                        </u>
+                                    </td>
+
+                                    <td>
+                                        Total Salary
+
+                                    </td>
+                                    <td>
+                                        <u>
+                                            <span t-esc="rule.amount_fix"/>
+                                        </u>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <table class='table table-sm'>
+
+                        <thead style="font-size: 23px;">
+                            <tr>
+                                <h6>
+                                    <th>DEDUCTIONS
+                                    </th>
+                                </h6>
+                            </tr>
+                        </thead>
+                        <t t-foreach="rule_id" t-as="rule">
+                            <tr>
+                                <td>
+                                    Social Insurance 1%
+
+                                </td>
+                                <td>
+                                    <u>
+                                        <span t-esc="rule.amount_fix"/>
+                                    </u>
+                                </td>
+
+                            </tr>
+                        </t>
+
+                    </table>
+
+                    <table class='table table-sm table-striped table-bordered'>
+                        <tr>
+                            <td>
+                                NET SALARY:
+                            </td>
+                            <td>
+                                <u>
+                                </u>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <p>company / office etc. collecting/deducting the tax.</p>
+                    <br/>
+                </div>
+            </t>
+        </t>
+    </template>
+
+
+    <template id="employee_report_template_old">
+        <t t-call="web.html_container">
+            <t t-call="web.internal_layout">
+                <div class="page">
+                    <table class="table table-sm table-bordered">
+                        <tr>
+                            <td>
+                                <strong>Company Information</strong>
+                            </td>
+                            <td>
+                                <div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <table name="employee-infos" class="table table-sm table-bordered">
+                        <tr>
+                            <td>
+                                <strong>Name</strong>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <strong>Designation</strong>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Address</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Email</strong>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <strong>Identification No</strong>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Reference</strong>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <strong>Bank Account</strong>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Date From</strong>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <strong>Date To</strong>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Computed On</strong>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                                <strong>Registration Number</strong>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-sm">
+                        <tr>
+                            <td>
+                                <strong>Basic Salary</strong>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Name</th>
+                                <th>Number of Hours</th>
+                                <th>Number of Days</th>
+                                <th>Quantity/rate</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <p class="text-right">
+                        <strong>Authorized signature</strong>
+                    </p>
+                </div>
+            </t>
+        </t>
+    </template>
+
+
+</odoo>
+
+

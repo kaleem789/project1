@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="my_account_link" name="Link to frontend portal" inherit_id="portal.frontend_layout">
+        <xpath expr="//a[@id='o_logout']" position="before">
+            <t t-if="user_id.user_type == 'faculty' and user_id.has_group('base.group_portal')">
+                <a href="/faculty/dashboard" role="menuitem" class="dropdown-item">Move to Faculty Dashboard</a>
+            </t>
+            <t t-if="user_id.user_type == 'faculty' and user_id.has_group('base.group_user')">
+                <a href="/faculty/dashboard" role="menuitem" class="dropdown-item">Move to Faculty Dashboard</a>
+                <a href="/web#" role="menuitem" class="dropdown-item">Move to Odoo</a>
+            </t>
+            <t t-if="user_id.user_type == 'employee' and user_id.has_group('base.group_user')">
+                <a href="/web#" role="menuitem" class="dropdown-item">Move to Odoo</a>
+            </t>
+        </xpath>
+    </template>
+</odoo>
